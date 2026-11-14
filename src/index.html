@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voting dApp - Truffle &amp; Ganache</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- ethers.js v6 (talks to Ganache or MetaMask) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <img src="logo.svg" alt="dApp logo" />
+    <h1>Voting dApp</h1>
+    <p class="sub">MG3012 – Assignment 3 | Truffle + Ganache (local blockchain)</p>
+  </header>
+
+  <h2>About this dApp</h2>
+  <p>This is the same voting contract from Assignment 2, but now it is compiled and deployed with <b>Truffle</b> on a local <b>Ganache</b> blockchain instead of Remix and Sepolia.</p>
+  <ul>
+    <li>The owner (Ganache account 0) adds candidates</li>
+    <li>Every account can vote only once</li>
+    <li>Votes are stored on the local blockchain</li>
+  </ul>
+  <p>Useful links:
+    <a href="https://archive.trufflesuite.com/guides/pet-shop/" target="_blank">Truffle Pet Shop guide</a> |
+    <a href="https://archive.trufflesuite.com/ganache/" target="_blank">Ganache</a> |
+    <a href="https://docs.ethers.org/v6/" target="_blank">ethers.js docs</a>
+  </p>
+
+  <h2>1. Connect</h2>
+  <button id="ganacheBtn">Connect to Ganache</button>
+  <button id="metamaskBtn" class="secondary">Connect MetaMask (optional)</button>
+  <div id="accountRow" class="hidden">
+    <label for="accountSelect">Account:</label>
+    <select id="accountSelect"></select>
+  </div>
+  <div class="box" id="walletInfo">Not connected</div>
+  <div class="box" id="contractInfo">Contract: not loaded</div>
+
+  <h2>2. Candidates (Read)</h2>
+  <button id="loadBtn">Load Candidates</button>
+  <button id="winnerBtn">Show Current Leader</button>
+  <ol id="candidateList"></ol>
+  <div class="box" id="winnerInfo">Leader: –</div>
+  <div class="box" id="votedInfo">Voting status: –</div>
+
+  <h2>3. Add Candidate (Write – owner only)</h2>
+  <input type="text" id="candidateName" placeholder="e.g. Candidate A" />
+  <button id="addBtn">Add Candidate</button>
+
+  <h2>4. Vote (Write)</h2>
+  <input type="number" id="voteId" placeholder="Candidate number (0,1,2…)" min="0" />
+  <button id="voteBtn">Vote</button>
+
+  <h2>Transaction Status</h2>
+  <div class="box" id="status">Waiting for action…</div>
+
+  <footer>Built with Solidity, Truffle, Ganache, HTML, CSS, JavaScript and ethers.js</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
